@@ -1,0 +1,24 @@
+# 服务器配置
+server:
+  port: 8888
+  servlet:
+    # 访问根路径添加/monitor
+    context-path: /monitor
+
+# 数据库相关配置
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:sqlite:src\main\resources\sqlite\test.db
+    username: root
+    password: root
+
+  # 接口不返回null字段
+  jackson:
+    default-property-inclusion: non_null
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
