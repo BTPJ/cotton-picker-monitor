@@ -28,4 +28,11 @@ public interface IUserService extends IService<User> {
      * @return 用户登录信息
      */
     User login(String name,String password);
+
+    /**
+     * 获取用户信息
+     * @param id 用户id
+     * @return 用户信息
+     */
+    User getUserInfo(Long id);
 }

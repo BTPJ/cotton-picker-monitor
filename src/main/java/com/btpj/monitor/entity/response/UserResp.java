@@ -1,30 +1,18 @@
-package com.btpj.monitor.entity;
+package com.btpj.monitor.entity.response;
 
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-/**
- * <p>
- *
- * </p>
- *
- * @author BTPJ
- * @since 2023-01-03
- */
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Accessors(chain = true)
 @ApiModel(value = "User对象", description = "")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class UserResp implements Serializable {
     private Long id;
-
     private String name;
-
-    private String password;
+    private String roles;
 }

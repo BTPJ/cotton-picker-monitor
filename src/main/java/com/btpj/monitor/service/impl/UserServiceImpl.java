@@ -37,4 +37,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userQueryWrapper.lambda().eq(User::getPassword, password);
         return userMapper.selectOne(userQueryWrapper);
     }
+
+    @Override
+    public User getUserInfo(Long id) {
+        return userMapper.selectById(id);
+    }
 }
