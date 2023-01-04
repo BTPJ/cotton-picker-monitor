@@ -10,7 +10,7 @@
     >
 
       <div class="title-container">
-        <h3 class="title">采棉机监测系统</h3>
+        <h3 class="title">采棉机监控系统</h3>
       </div>
 
       <el-form-item prop="username">
