@@ -20,6 +20,7 @@ public class MPGenerator {
                 })
                 .strategyConfig(builder -> {
                     builder.addTablePrefix("t_", "c_") // 设置过滤表前缀
+                            .enableCapitalMode()
                             .enableSkipView(); // 跳过视图
 
                     // 实体类相关

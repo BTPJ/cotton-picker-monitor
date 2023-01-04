@@ -13,4 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IHallInformService extends IService<HallInform> {
 
+    /**
+     * 获取最近一条数据
+     * @return 最近一条数据
+     */
+    HallInform getLatestData();
 }
