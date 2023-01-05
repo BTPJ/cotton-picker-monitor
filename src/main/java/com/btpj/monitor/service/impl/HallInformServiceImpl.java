@@ -1,6 +1,5 @@
 package com.btpj.monitor.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.interfaces.Func;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.btpj.monitor.entity.HallInform;

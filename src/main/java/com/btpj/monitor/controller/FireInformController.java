@@ -2,7 +2,6 @@ package com.btpj.monitor.controller;
 
 import com.btpj.monitor.entity.FireInform;
 import com.btpj.monitor.entity.response.BaseResp;
-import com.btpj.monitor.entity.response.MonitorResp;
 import com.btpj.monitor.service.IFireInformService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

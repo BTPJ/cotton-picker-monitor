@@ -3,7 +3,6 @@ package com.btpj.monitor.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.btpj.monitor.entity.FireInform;
-import com.btpj.monitor.entity.HallInform;
 import com.btpj.monitor.mapper.FireInformMapper;
 import com.btpj.monitor.service.IFireInformService;
 import org.springframework.stereotype.Service;

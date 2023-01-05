@@ -1,9 +1,7 @@
 package com.btpj.monitor.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.btpj.monitor.entity.DriverInform;
-import com.btpj.monitor.entity.FireInform;
 import com.btpj.monitor.entity.response.BaseResp;
 import com.btpj.monitor.service.IDriverInformService;
 import io.swagger.annotations.Api;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
 
 /**
  * <p>

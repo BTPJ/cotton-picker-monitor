@@ -1,9 +1,7 @@
 package com.btpj.monitor.controller;
 
-import com.btpj.monitor.entity.HallInform;
 import com.btpj.monitor.entity.WaterLevelInform;
 import com.btpj.monitor.entity.response.BaseResp;
-import com.btpj.monitor.service.IHallInformService;
 import com.btpj.monitor.service.IWaterLevelInformService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

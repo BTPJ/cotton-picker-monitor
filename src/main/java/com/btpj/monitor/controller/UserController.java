@@ -4,7 +4,6 @@ import com.btpj.monitor.entity.User;
 import com.btpj.monitor.entity.response.BaseResp;
 import com.btpj.monitor.entity.response.UserResp;
 import com.btpj.monitor.service.IUserService;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
