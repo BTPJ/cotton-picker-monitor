@@ -35,8 +35,8 @@ public class MonitorController {
     private ISTemperatureInformService temperatureInformService;
 
     @ApiOperation(value = "获取实时监测数据")
-    @GetMapping("/current")
-    public BaseResp<MonitorResp> getCurrentMonitorData() {
+    @GetMapping("/latest")
+    public BaseResp<MonitorResp> getMonitorLatestData() {
         MonitorResp monitorResp = new MonitorResp();
         monitorResp.setCo(coGasInformService.getLatestData());
         monitorResp.setFire(fireInformService.getLatestData());

@@ -20,5 +20,10 @@ spring:
 
 
 mybatis-plus:
+  global-config:
+    db-config:
+      # 表名不是下划线形式的
+      table-underline: false
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false

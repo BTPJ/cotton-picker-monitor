@@ -1,7 +1,9 @@
 package com.btpj.monitor.service;
 
-import com.btpj.monitor.entity.CoGasInform;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.btpj.monitor.entity.CoGasInform;
+
+import java.util.List;
 
 /**
  * <p>
@@ -18,4 +20,12 @@ public interface ICoGasInformService extends IService<CoGasInform> {
      * @return 最近一条数据
      */
     CoGasInform getLatestData();
+
+    /**
+     * 获取列表数据
+     * @param beginTime 开始时间
+     * @param endTime   结束时间
+     * @return 列表数据
+     */
+    List<CoGasInform> getList(String beginTime, String endTime);
 }

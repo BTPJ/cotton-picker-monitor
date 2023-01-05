@@ -1,12 +1,11 @@
 package com.btpj.monitor.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.btpj.monitor.entity.CoGasInform;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.btpj.monitor.entity.FireInform;
-import com.btpj.monitor.mapper.CoGasInformMapper;
+import com.btpj.monitor.entity.HallInform;
 import com.btpj.monitor.mapper.FireInformMapper;
 import com.btpj.monitor.service.IFireInformService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,5 +30,18 @@ public class FireInformServiceImpl extends ServiceImpl<FireInformMapper, FireInf
         wrapper.lambda().orderByDesc(FireInform::getSTime).last("limit 1");
         List<FireInform> list = fireInformMapper.selectList(wrapper);
         return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
+    public List<FireInform> getList(String beginTime, String endTime) {
+        QueryWrapper<FireInform> wrapper = new QueryWrapper<>();
+        if (beginTime != null) {
+            wrapper.lambda().ge(FireInform::getSTime, beginTime);
+        }
+        if (endTime != null) {
+            wrapper.lambda().le(FireInform::getSTime, endTime);
+        }
+        wrapper.lambda().orderByDesc(FireInform::getSTime);
+        return fireInformMapper.selectList(wrapper);
     }
 }
