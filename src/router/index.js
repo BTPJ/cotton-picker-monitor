@@ -6,11 +6,6 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 
-/* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -90,14 +85,14 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/pdf',
+    path: '/devices',
     component: Layout,
-    redirect: '/pdf/index',
+    redirect: '/devices/index',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/pdf/index'),
-        name: 'PDF',
+        component: () => import('@/views/devices/index'),
+        name: 'Devices',
         meta: { title: '设备信息', icon: 'pdf' }
       }
     ]
@@ -110,33 +105,33 @@ export const asyncRoutes = [
       {
         path: 'index',
         component: () => import('@/views/hisData/index'),
-        name: 'PDF',
+        name: 'HisData',
         meta: { title: '历史数据', icon: 'pdf' }
       }
     ]
   },
   {
-    path: '/pdf',
+    path: '/monitor',
     component: Layout,
-    redirect: '/pdf/index',
+    redirect: '/monitor/index',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/pdf/index'),
-        name: 'PDF',
+        component: () => import('@/views/monitor/index'),
+        name: 'Monitor',
         meta: { title: '监控显示', icon: 'pdf' }
       }
     ]
   },
   {
-    path: '/pdf',
+    path: '/map',
     component: Layout,
-    redirect: '/pdf/index',
+    redirect: '/map/index',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/pdf/index'),
-        name: 'PDF',
+        component: () => import('@/views/map/index'),
+        name: 'Map',
         meta: { title: '地图定位', icon: 'pdf' }
       }
     ]

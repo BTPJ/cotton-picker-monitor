@@ -44,7 +44,7 @@
     </el-col>
     <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
       <div class="card-panel" @click="navToHisData">
-        <div class="card-panel-icon-wrapper icon-money">
+        <div class="card-panel-icon-wrapper icon-co">
           <svg-icon icon-class="eye-open" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
@@ -160,16 +160,16 @@ export default {
         background: #36a3f7;
       }
 
-      .icon-money {
-        background: #f4516c;
+      .icon-co {
+        background: #c09b25;
       }
 
       .icon-fire {
-        background: #f4516c;
+        background: #e11436;
       }
 
       .icon-water {
-        background: #34bfa3;
+        background: #447e1f;
       }
     }
 
@@ -181,16 +181,16 @@ export default {
       color: #36a3f7;
     }
 
-    .icon-money {
-      color: #f4516c;
+    .icon-co {
+      color: #c09b25;
     }
 
     .icon-fire {
-      color: #f4516c;
+      color: #e11436;
     }
 
     .icon-water {
-      color: #34bfa3;
+      color: #447e1f;
     }
 
     .card-panel-icon-wrapper {
