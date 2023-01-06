@@ -19,6 +19,18 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+import VueAMap from '@vuemap/vue-amap'
+import '@vuemap/vue-amap/dist/style.css'
+
+Vue.use(VueAMap)
+// 初始化vue-amap
+VueAMap.initAMapApiLoader({
+  // 高德的key
+  key: '5547555554d9352c6d8942b63efa0233',
+  // 插件集合 （插件按需引入）
+  plugin: ['AMap.Autocomplete', 'AMap.MoveAnimation', 'AMap.Scale', 'AMap.ToolBar']
+})
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
