@@ -11,12 +11,12 @@
           </div>
           <count-to
             :start-val="0"
-            :end-val="latestData.hall.ihall"
+            :end-val="hall.ihall"
             :duration="3000"
             class="card-panel-num"
           />
           <div class="card-panel-time">
-            {{ latestData.hall.stime }}
+            {{ hall.stime }}
           </div>
         </div>
       </div>
@@ -32,12 +32,12 @@
           </div>
           <count-to
             :start-val="0"
-            :end-val="latestData.temperature.ftemperature"
+            :end-val="temperature.ftemperature"
             :duration="3000"
             class="card-panel-num"
           />
           <div class="card-panel-time">
-            {{ latestData.temperature.stime }}
+            {{ temperature.stime }}
           </div>
         </div>
       </div>
@@ -51,9 +51,9 @@
           <div class="card-panel-text">
             CO含量
           </div>
-          <count-to :start-val="0" :end-val="latestData.co.fcoGas" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="co.fcoGas" :duration="3200" class="card-panel-num" />
           <div class="card-panel-time">
-            {{ latestData.co.stime }}
+            {{ co.stime }}
           </div>
         </div>
       </div>
@@ -67,9 +67,9 @@
           <div class="card-panel-text">
             火焰
           </div>
-          <count-to :start-val="0" :end-val="latestData.fire.ifire" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="fire.ifire" :duration="3600" class="card-panel-num" />
           <div class="card-panel-time">
-            {{ latestData.fire.stime }}
+            {{ fire.stime }}
           </div>
         </div>
       </div>
@@ -83,9 +83,9 @@
           <div class="card-panel-text">
             水位
           </div>
-          <count-to :start-val="0" :end-val="latestData.water.fwaterLevel" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="water.fwaterLevel" :duration="3600" class="card-panel-num" />
           <div class="card-panel-time">
-            {{ latestData.water.stime }}
+            {{ water.stime }}
           </div>
         </div>
       </div>
@@ -104,7 +104,11 @@ export default {
 
   data() {
     return {
-      latestData: {}
+      hall: {},
+      temperature: {},
+      co: {},
+      fire: {},
+      water: {}
     }
   },
 
@@ -115,7 +119,11 @@ export default {
   methods: {
     async fetchLatestData() {
       const { data } = await getMonitorLatestData()
-      this.latestData = data
+      this.hall = data.hall || {}
+      this.temperature = data.temperature || {}
+      this.co = data.co || {}
+      this.fire = data.fire || {}
+      this.water = data.water || {}
     },
 
     navToHisData() {

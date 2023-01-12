@@ -1,57 +1,75 @@
 <template>
-  <video-player
-    ref="videoPlayer"
-    class="video-player"
-    :playsinline="true"
-    :options="playerOptions"
-  />
+  <div class="page" @click="onClick">
+    <vue-ali-player-v2
+      ref="VueAliPlayerV2"
+      :source="source"
+      :options="options"
+      @play="onPlay"
+      @pause="onPause"
+    />
+    <i v-if="showPauseIcon" class="el-icon-caret-right" />
+  </div>
 </template>
 
 <script>
-import { videoPlayer } from 'vue-video-player'
-import 'video.js/dist/video-js.css'
+import VueAliPlayerV2 from 'vue-aliplayer-v2'
 
 export default {
   name: 'Monitor',
-  components: { videoPlayer },
+  components: { VueAliPlayerV2 },
 
   data() {
     return {
-      playerOptions: {
-        playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
-        autoplay: false, // 如果为true,浏览器准备好时开始回放
-        muted: false, // 默认情况下将会消除任何音频。
-        loop: false, // 是否视频一结束就重新开始。
-        preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
-        language: 'zh-CN',
-        aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
-        fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
-        sources: [{
-          type: 'video/mp4', // 类型
-          src: 'http://127.0.0.1/test.mp4' // url地址
-        }],
-        poster: '', // 封面地址
-        notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
-        controlBar: {
-          timeDivider: true, // 当前时间和持续时间的分隔符
-          durationDisplay: true, // 显示持续时间
-          remainingTimeDisplay: false, // 是否显示剩余时间功能
-          fullscreenToggle: true // 是否显示全屏按钮
-        }
-      }
+      options: {
+        isLive: true, // 切换为直播流的时候必填
+        format: 'm3u8' // 切换为直播流的时候必填
+      },
+      source: 'http://219.151.31.38/liveplay-kk.rtxapp.com/live/program/live/hnwshd/4000000/mnf.m3u8',
+      showPauseIcon: false
     }
   },
 
-  created() {
-  },
+  methods: {
+    onClick() {
+      const player = this.$refs.VueAliPlayerV2
+      console.log(player.getStatus())
+      switch (player.getStatus()) {
+        case 'playing': // 播放状态
+          player.pause()
+          break
 
-  methods: {}
+        case 'pause': // 暂停状态
+          player.play()
+          break
+      }
+    },
+
+    onPlay() {
+      this.showPauseIcon = false
+    },
+
+    onPause() {
+      this.showPauseIcon = true
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.video-player {
-  width: 100%;
-  height: 100%;
+.page {
+  position: relative;
+
+  .el-icon-caret-right {
+    font-size: 100px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.prism-player {
+  height: 90vh !important;
 }
 </style>
