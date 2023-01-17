@@ -7,7 +7,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            转速
+            转速(r/min)
           </div>
           <count-to
             :start-val="0"
@@ -28,7 +28,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            温度
+            温度(℃)
           </div>
           <count-to
             :start-val="0"
@@ -81,7 +81,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            水位
+            水位(mm)
           </div>
           <count-to :start-val="0" :end-val="water.fwaterLevel" :duration="3600" class="card-panel-num" />
           <div class="card-panel-time">
