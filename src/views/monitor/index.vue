@@ -1,91 +1,76 @@
 <template>
   <div class="page">
-    <div class="player1" @click="onClick1">
-      <vue-ali-player-v2
-        ref="VueAliPlayerV21"
-        :source="source1"
-        :options="options"
-        @play="onPlay1"
-        @pause="onPause1"
-      />
-      <i v-if="showPauseIcon1" class="el-icon-caret-right" />
+    <div class="player1">
+      <video ref="player1" controls preload />
     </div>
-    <div class="player2" @click="onClick2">
-      <vue-ali-player-v2
-        ref="VueAliPlayerV22"
-        :source="source2"
-        :options="options"
-        @play="onPlay2"
-        @pause="onPause2"
-      />
-      <i v-if="showPauseIcon2" class="el-icon-caret-right" />
+    <div class="player2">
+      <video ref="player2" controls preload />
     </div>
   </div>
 </template>
 
 <script>
-import VueAliPlayerV2 from 'vue-aliplayer-v2'
+import Hls from 'hls.js'
 
 export default {
   name: 'Monitor',
-  components: { VueAliPlayerV2 },
 
   data() {
     return {
-      options: {
-        isLive: true, // 切换为直播流的时候必填
-        format: 'm3u8' // 切换为直播流的时候必填
-      },
-      source1: 'http://192.168.1.16/hlsram/chn0/index.m3u8',
-      source2: 'http://192.168.1.16/hlsram/chn1/index.m3u8',
-      showPauseIcon1: false,
-      showPauseIcon2: false
+      hlsPlayer1: '',
+      hlsPlayer2: ''
     }
   },
 
+  created() {
+    this.$once('hook:beforeDestroy', () => this.destroyHls())
+  },
+
+  mounted() {
+    this.startVideo()
+  },
+
   methods: {
-    onClick1() {
-      const player = this.$refs.VueAliPlayerV21
-      console.log(player.getStatus())
-      switch (player.getStatus()) {
-        case 'playing': // 播放状态
-          player.pause()
-          break
+    destroyHls() {
+      if (this.hlsPlayer1) {
+        this.$refs.player1.pause()
+        this.hlsPlayer1.destroy()
+        this.hlsPlayer1 = null
+      }
 
-        case 'pause': // 暂停状态
-          player.play()
-          break
+      if (this.hlsPlayer2) {
+        this.$refs.player2.pause()
+        this.hlsPlayer2.destroy()
+        this.hlsPlayer2 = null
       }
     },
 
-    onClick2() {
-      const player = this.$refs.VueAliPlayerV22
-      console.log(player.getStatus())
-      switch (player.getStatus()) {
-        case 'playing': // 播放状态
-          player.pause()
-          break
+    startVideo() {
+      if (Hls.isSupported()) {
+        const player1 = this.$refs.player1
+        this.hlsPlayer1 = new Hls()
+        this.hlsPlayer1.loadSource('http://192.168.1.16/hlsram/chn0/index.m3u8')
+        this.hlsPlayer1.attachMedia(player1)
+        this.hlsPlayer1.on(Hls.Events.MANIFEST_PARSED, () => {
+          console.log('视频1加载成功')
+          player1.play()
+        })
+        this.hlsPlayer1.on(Hls.Events.ERROR, () => {
+          console.error('视频1加载失败')
+        })
 
-        case 'pause': // 暂停状态
-          player.play()
-          break
+        const player2 = this.$refs.player2
+        this.hlsPlayer2 = new Hls()
+        this.hlsPlayer2.loadSource('http://192.168.1.16/hlsram/chn1/index.m3u8')
+        this.hlsPlayer2.attachMedia(player2)
+        this.hlsPlayer2.on(Hls.Events.MANIFEST_PARSED, () => {
+          console.log('视频2加载成功')
+          player2.play()
+        })
+        this.hlsPlayer2.on(Hls.Events.ERROR, () => {
+          console.error('视频2加载失败')
+        })
       }
-    },
-
-    onPlay1() {
-      this.showPauseIcon1 = false
-    },
-
-    onPause1() {
-      this.showPauseIcon1 = true
-    },
-
-    onPlay2() {
-      this.showPauseIcon2 = false
-    },
-
-    onPause2() {
-      this.showPauseIcon2 = true
     }
   }
 }
@@ -94,23 +79,16 @@ export default {
 <style lang="scss" scoped>
 .page {
   display: flex;
+
   .player1, .player2 {
     flex: 1;
     margin-right: 10px;
-    position: relative;
 
-    .el-icon-caret-right {
-      font-size: 100px;
-      background: #fff;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
+    video {
+      width: 100%;
+      height: 92vh;
+      object-fit: fill;
     }
   }
-}
-
-.prism-player {
-  height: 90vh !important;
 }
 </style>

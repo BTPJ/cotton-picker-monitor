@@ -65,9 +65,14 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/equipment',
+    component: () => import('@/views/equipment/equipment'),
+    hidden: true
+  },
+  {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/equipment',
     children: [
       {
         path: 'dashboard',
